@@ -79,3 +79,35 @@ function calcul() {
 }
 
 equalsButton.addEventListener("click",calcul);
+
+function keybord(event){
+    const key = event.key;
+    if (key >= '0' && key <= '9'){
+        numberButtonKeyBoard(key)
+    }
+}
+
+function operatorSelectorkeyboard (op){
+    console.log(op);
+        if (number1 === "") {
+            return;
+        }else if (operator !== "") {
+            return;
+        }else {
+            operator = op;
+            showDisplay(number1 + operator);
+        }
+        
+    };
+
+function numberButtonKeyBoard(op) {
+        if (operator === "") {
+            number1 += op;
+            showDisplay(number1);
+        } else {
+            number2 += op;
+            showDisplay(number1 + operator + number2);
+        }
+}
+
+document.addEventListener('keydown', keybord)

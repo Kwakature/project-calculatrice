@@ -1,19 +1,27 @@
 let operatorButton = document.querySelectorAll(".operator")
 let display = document.querySelector("#display")
-let list = '';
+
+let number1 = "";
+let number2 = "";
+let operator = "";
 
 function showDisplay(element){
-    list += element
-    display.innerHTML = list
+    display.innerHTML = element
 }
 
 
 function operatorSelector (event){
-    const buttonOpe = event.target;
-    const operation = buttonOpe.dataset.operator;
-    showDisplay(operation)
-    console.log(operation)
-}
+    const op = event.target.dataset.operator;
+        if (number1 === "") {
+            return;
+        }else if (operator !== "" && number2 === "") {
+            return;
+        }else {
+            operator = op;
+            showDisplay(number1 + operator);
+        }
+        
+    };
 
 for(let ope of operatorButton){
     ope.addEventListener('click',operatorSelector);
@@ -21,11 +29,14 @@ for(let ope of operatorButton){
 const numberButtons = document.querySelectorAll("[data-number]");
 
 function numberButton(event) {
-    const clikedButton = event.target;
-    const nb = clikedButton.dataset.number;
-    showDisplay(nb)
-    console.log(nb)
-    
+    const value = event.target.dataset.number;
+     if (operator === "") {
+            number1 += value;
+            showDisplay(number1)
+        } else {
+            number2 += value;
+            showDisplay(number1 + operator + number2);
+        }
 }
 for (buttonNumber of numberButtons) {
     buttonNumber.addEventListener('click', numberButton);

@@ -69,7 +69,7 @@ function calcul() {
             if (n2 === 0) {
                 result = "Impossible";
             }else {
-                n1 / n2;
+                result = n1 / n2;
             }
             break;
         default:

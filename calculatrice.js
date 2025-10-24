@@ -1,6 +1,7 @@
-let operatorButton = document.querySelectorAll(".operator")
-let display = document.querySelector("#display")
-let supprimer = document.querySelector(".clear")
+const operatorButton = document.querySelectorAll(".operator")
+const display = document.querySelector("#display")
+const delButton = document.querySelector(".clear")
+const equalsButton = document.querySelector(".equals");
 let number1 = "";
 let number2 = "";
 let operator = "";
@@ -16,7 +17,7 @@ function supp(){
     showDisplay("0")
 }
 
-supprimer.addEventListener('click' ,supp)
+delButton.addEventListener('click' ,supp)
 
 function operatorSelector (event){
     const op = event.target.dataset.operator;
@@ -49,3 +50,32 @@ function numberButton(event) {
 for (buttonNumber of numberButtons) {
     buttonNumber.addEventListener('click', numberButton);
 }
+
+function calcul() {
+    let result = 0;
+    const n1 = Number(number1);
+    const n2 = Number(number2);
+    switch (operator) {
+        case "+":
+            result = n1 + n2;
+            break;
+        case "-":
+            result = n1 - n2;
+            break;
+        case "*":
+            result = n1 * n2;
+            break;
+        case "/":
+            if (n2 === 0) {
+                result = "Impossible";
+            }else {
+                n1 / n2;
+            }
+            break;
+        default:
+            return;
+    }
+    showDisplay(String(result));
+}
+
+equalsButton.addEventListener("click",calcul);
